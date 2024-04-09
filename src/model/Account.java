@@ -2,19 +2,21 @@ package model;
 
 import exception.ModelException;
 
+import java.util.List;
 import java.util.Objects;
 
-public class Account extends Common{
+public class Account extends Common {
     private String title;
     private Currency currency;
     private double startAmount;
     private double amount;
 
-    public Account(){}
+    public Account() {
+    }
 
     public Account(String title, Currency currency, double startAmount) throws ModelException {
-        if(title.length()==0) throw new ModelException(ModelException.TITLE_EMPTY);
-        if(currency==null) throw new ModelException(ModelException.CURRENCY_EMPTY);
+        if (title.length() == 0) throw new ModelException(ModelException.TITLE_EMPTY);
+        if (currency == null) throw new ModelException(ModelException.CURRENCY_EMPTY);
         this.title = title;
         this.currency = currency;
         this.startAmount = startAmount;
@@ -82,7 +84,20 @@ public class Account extends Common{
         return super.getValueForComboBox();
     }
 
-    public void setAmountFromTransactionsAndTransfers(){
-
+    public void setAmountFromTransactionsAndTransfers(List<Transaction> transactions, List<Transfer> transfers) {
+        this.amount = startAmount;
+        for (Transaction transaction : transactions) {
+            if (transaction.getAccount().equals(this)) {
+                this.amount += transaction.getAmount();
+            }
+        }
+        for(Transfer transfer : transfers){
+            if (transfer.getFromAccount().equals(this)){
+                this.amount-= transfer.getFromAmount();
+            }
+            if(transfer.getToAccount().equals(this)){
+                this.amount+= transfer.getToAmount();
+            }
+        }
     }
 }
