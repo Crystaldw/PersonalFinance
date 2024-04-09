@@ -2,7 +2,7 @@ package exception;
 
 import settings.Text;
 
-public class ModelException {
+public class ModelException extends Exception{
     public static final int TITLE_EMPTY = 1;
     public static final int IS_EXIST = 2;
     public static final int DATE_FORMAT = 3;
