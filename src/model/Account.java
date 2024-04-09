@@ -53,6 +53,16 @@ public class Account extends Common{
     }
 
     @Override
+    public String toString() {
+        return "Account{" +
+                "title='" + title + '\'' +
+                ", currency=" + currency +
+                ", startAmount=" + startAmount +
+                ", amount=" + amount +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
