@@ -14,12 +14,12 @@ public class SaveData {
     private List<Transaction> transactions = new ArrayList<>();
     private List<Transfer> transfers = new ArrayList<>();
 
-    private SaveData(){
+    private SaveData() {
 
     }
 
-    public static SaveData getInstance(){
-        if(instance==null)instance = new SaveData();
+    public static SaveData getInstance() {
+        if (instance == null) instance = new SaveData();
         return instance;
     }
 
@@ -41,5 +41,11 @@ public class SaveData {
 
     public List<Transfer> getTransfers() {
         return transfers;
+    }
+
+    public Currency getBaseCurrency() {
+        for (Currency c : currencies)
+            if (c.isBase()) return c;
+        return new Currency();
     }
 }
