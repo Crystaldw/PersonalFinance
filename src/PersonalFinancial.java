@@ -1,7 +1,7 @@
+import settings.Settings;
 import settings.Text;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +16,7 @@ public class PersonalFinancial {
         try {
         Text.init();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Roboto-Light.ttf")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, Settings.FONT_ROBOTO_LIGHT));
         } catch (FontFormatException | IOException e) {
             Logger.getAnonymousLogger(PersonalFinancial.class.getName()).log(Level.SEVERE, null, e);
         }
