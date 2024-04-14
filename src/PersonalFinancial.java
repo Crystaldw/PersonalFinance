@@ -11,11 +11,11 @@ public class PersonalFinancial {
         init();
 //        System.out.println(Text.get("PROGRAM_NAME"));
 //        System.out.println(Arrays.toString(Text.getMonths()));
+//        System.out.println("\\, \\\\");
     }
     private static void init(){
         try {
         Settings.init();
-        Settings.save();
         Text.init();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, Settings.FONT_ROBOTO_LIGHT));

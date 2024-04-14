@@ -14,7 +14,7 @@ import java.util.prefs.Preferences;
 public class Settings {
 
     public static final File FONT_ROBOTO_LIGHT = new File("fonts/Roboto-Light.ttf"); //подключаем шрифт
-    public static final File SAVE_DIR = new File("save/"); //папка для сохранения файлов
+    public static final File SAVE_DIR = new File("saves/"); //папка для сохранения файлов
     public static final String SAVE_FILE_EXT = "myrus"; //придуманное расширение для сохраненных файлов
     public static final String FORMAT_AMOUNT = "%.2f"; //формат вывода суммы счета
     public static final String FORMAT_RATE = "%.4f"; //формат вывода курса валюты
@@ -24,9 +24,9 @@ public class Settings {
     public static final int COUNT_OVERVIEV_ROWS = 10;//какое колл-во строк будет показано на главном экране (последние транзакции)
     public static final String[] CURRENCIES_CODESS = new String[]{"PLN", "EUR", "USD", "UAH"}; //добавление валют
 
-    private static final File FILE_SETTINGS = new File("save/settings.ini"); // место хранения файла настроек
+    private static final File FILE_SETTINGS = new File("saves/settings.ini"); // место хранения файла настроек
 
-    private static File FILE_SAVE = new File("save/default.myrus"); //путь к последнему открытому файлу. если его нету, то дефолтный файл.
+    private static File FILE_SAVE = new File("saves/default.myrus"); //путь к последнему открытому файлу. если его нету, то дефолтный файл.
 
     public static void init() {
         try {
@@ -55,7 +55,7 @@ public class Settings {
         save();
     }
 
-    public static void save() {
+    private static void save() {
         try {
             Wini ini = new Wini(FILE_SETTINGS);
             ini.put("Settings", "FILE_SAVE", FILE_SAVE.getAbsolutePath().replace("\\", "\\\\"));
