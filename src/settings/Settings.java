@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
-public class Settings {
+final public class Settings {
 
     public static final File FONT_ROBOTO_LIGHT = new File("fonts/Roboto-Light.ttf"); //подключаем шрифт
     public static final File SAVE_DIR = new File("saves/"); //папка для сохранения файлов
