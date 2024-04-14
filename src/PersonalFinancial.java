@@ -14,6 +14,8 @@ public class PersonalFinancial {
     }
     private static void init(){
         try {
+        Settings.init();
+        Settings.save();
         Text.init();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, Settings.FONT_ROBOTO_LIGHT));

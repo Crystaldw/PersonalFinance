@@ -1,9 +1,12 @@
 package settings;
 
 import org.ini4j.Ini;
+import org.ini4j.IniPreferences;
+import org.ini4j.Wini;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
@@ -23,16 +26,42 @@ public class Settings {
 
     private static final File FILE_SETTINGS = new File("save/settings.ini"); // место хранения файла настроек
 
-    private static final File FILE_SAVE = new File("save/default.myrus"); //путь к последнему открытому файлу. если его нету, то дефолтный файл.
+    private static File FILE_SAVE = new File("save/default.myrus"); //путь к последнему открытому файлу. если его нету, то дефолтный файл.
 
     public static void init() {
         try {
             Ini ini = new Ini(FILE_SETTINGS);
-            Preferences prefs = new iniPreferences(ini);
-            String file =prefs.node("Settings").get("SAVE_FILE", null);
-        } catch (IOException e) {
-            Logger.getLogger(Settings.class.getName().log(Level.SEVERE, null, e));
+            Preferences prefs = new IniPreferences(ini);
+            String file = prefs.node("Settings").get("FILE_SAVE", null);
+            if (file != null) FILE_SAVE = new File(file);
+            setLocale(); // данный метод устанавливает локализацию (язык)
+        } catch (IOException ex) {
+            save();
         }
+    }
 
+    // данный метод устанавливает локализацию (язык по умолчанию)
+    private static void setLocale () {
+        Locale.setDefault(new Locale("ru"));
+    }
+
+
+    public static File getFileSave() {
+        return FILE_SAVE;
+    }
+
+    public static void setFileSave(File file) {
+        FILE_SAVE = file;
+        save();
+    }
+
+    public static void save() {
+        try {
+            Wini ini = new Wini(FILE_SETTINGS);
+            ini.put("Settings", "FILE_SAVE", FILE_SAVE.getAbsolutePath().replace("\\", "\\\\"));
+            ini.store();
+        } catch (IOException ex) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null,ex);
+        }
     }
 }
