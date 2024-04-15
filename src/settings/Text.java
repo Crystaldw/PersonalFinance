@@ -6,10 +6,13 @@ final public class Text {
 
     private static final HashMap<String, String> data = new HashMap<>();
 
-    public static String get(String key){
-        return data.get(key);
+    public static String get(String key) {
+        if (data.containsKey(key)) return data.get(key);
+        System.out.println("Тключа в Text не существует!"); //для отладки
+        return "";
     }
-    public static String[] getMonths(){
+
+    public static String[] getMonths() {
         String[] months = new String[12];
         months[0] = get("JANUARY");
         months[1] = get("FEBRUARY");
@@ -25,7 +28,8 @@ final public class Text {
         months[11] = get("DECEMBER");
         return months;
     }
-    public static void init(){
+
+    public static void init() {
         data.put("PROGRAM_NAME", "Домашняя бухгалтерия");
         data.put("MENU_FILE", "Файл");
         data.put("MENU_EDIT", "Правка");
@@ -55,6 +59,9 @@ final public class Text {
         data.put("ERROR_RATE_INCORRECT", "Некорректное значение курса!");
         data.put("ERROR_AMOUNT_FORMAT", "Некорректный формат суммы!");
         data.put("ERROR_NO_BASE_CURRENCY", "Неходима базовая валюта! Установите сначала этот параметр в другой валюте, потом он сменится в этой автоматически");
+
+        data.put("YES", "Да");
+        data.put("NO", "Нет");
 
     }
 
