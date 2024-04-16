@@ -31,7 +31,7 @@ public class SaveData {
         return accounts;
     }
 
-    public List<java.util.Currency> getCurrencies() {
+    public List<Currency> getCurrencies() {
         return currencies;
     }
 

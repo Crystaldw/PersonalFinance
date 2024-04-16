@@ -1,13 +1,9 @@
 package saveload;
 
-import model.Account;
-import model.Article;
-import model.Transaction;
-import model.Transfer;
+import model.*;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Currency;
 import java.util.List;
 
 @XmlRootElement(name = "data")
