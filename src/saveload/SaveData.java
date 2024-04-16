@@ -31,7 +31,7 @@ public class SaveData {
         return accounts;
     }
 
-    public List<Currency> getCurrencies() {
+    public List<java.util.Currency> getCurrencies() {
         return currencies;
     }
 
@@ -41,6 +41,26 @@ public class SaveData {
 
     public List<Transfer> getTransfers() {
         return transfers;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public void setCurrencies(List<Currency> currencies) {
+        this.currencies = currencies;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public void setTransfers(List<Transfer> transfers) {
+        this.transfers = transfers;
     }
 
     public Currency getBaseCurrency() {

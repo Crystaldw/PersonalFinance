@@ -12,11 +12,11 @@ import java.util.List;
 
 @XmlRootElement(name = "data")
 public class Wrapper {
-    private List<Article>articles;
-    private List<Account>accounts;
-    private List<Transaction>transactions;
-    private List<Transfer>transfers;
-    private List<Currency>currencies;
+    private List<Article> articles;
+    private List<Account> accounts;
+    private List<Transaction> transactions;
+    private List<Transfer> transfers;
+    private List<Currency> currencies;
 
     @XmlElement(name = "articles")
     public List<Article> getArticles() {
@@ -55,7 +55,7 @@ public class Wrapper {
     }
 
     @XmlElement(name = "currencies")
-    public List<Currency> getCurrencies() {
+    public List<model.Currency> getCurrencies() {
         return currencies;
     }
 
