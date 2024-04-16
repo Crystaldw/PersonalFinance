@@ -11,11 +11,12 @@ import java.util.logging.Logger;
 public class PersonalFinancial {
     public static void main(String[] args) {
         init();
-        System.out.println(Format.dateMonth(new Date()));
+//        System.out.println(Format.dateMonth(new Date()));
 //        System.out.println(Text.get("PROGRAM_NAME"));
 //        System.out.println(Arrays.toString(Text.getMonths()));
 //        System.out.println("\\, \\\\");
     }
+
     private static void init(){
         try {
         Settings.init();
