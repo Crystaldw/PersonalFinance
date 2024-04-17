@@ -3,9 +3,10 @@ package saveload;
 import model.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class SaveData {
+public final class SaveData {
 
     private static SaveData instance;
     private List<Article> articles = new ArrayList<>();
@@ -14,13 +15,46 @@ public class SaveData {
     private List<Transaction> transactions = new ArrayList<>();
     private List<Transfer> transfers = new ArrayList<>();
 
-    private SaveData() {
+    private final Filter filter;
+    private Common oldCommon;
+    private boolean isSaved = true;
 
+    private SaveData() {
+        load();
+        this.filter = new Filter();
+    }
+
+    public void load() {
+        SaveLoad.load(this);
+        sort();
+    }
+
+    private void sort() {
+        this.articles.sort((Article a, Article a1) -> (a.getTitle().compareToIgnoreCase(a1.getTitle())));
+        this.accounts.sort((Account a, Account a1) -> (a.getTitle().compareToIgnoreCase(a1.getTitle())));
+        this.transactions.sort((Transaction t, Transaction t1) -> (int) (t1.getDate().compareTo(t.getDate())));
+        this.transfers.sort((Transfer t, Transfer t1) -> (int) (t1.getDate().compareTo(t.getDate())));
+        this.currencies.sort(new Comparator<Currency>() {
+            @Override
+            public int compare(Currency c, Currency c1) {
+                if (c.isBase()) return -1;
+                if (c1.isBase()) return 1;
+                if (c.isOn() ^ c1.isOn()){
+                    if (c1.isOn()) return 1;
+                    else return -1;
+                }
+                return c.getTitle().compareToIgnoreCase(c1.getTitle());
+            }
+        });
     }
 
     public static SaveData getInstance() {
         if (instance == null) instance = new SaveData();
         return instance;
+    }
+
+    public Filter getFilter() {
+        return filter;
     }
 
     public List<Article> getArticles() {
