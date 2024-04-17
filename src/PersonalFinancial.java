@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PersonalFinancial {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ModelException {
         init();
         testModel();
 //        System.out.println(Format.dateMonth(new Date()));
